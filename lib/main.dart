@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:todo_list/homepage.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:todo_list/pages/homepage.dart';
 
-void main() {
+void main() async{
+ await Hive.initFlutter();
+  //open a box
+  var box=await Hive.openBox("mybox");
   runApp(const MyApp());
 }
 
@@ -10,11 +14,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: "To-Do-List",
-      home: HomePage(
-        
-      ),
+      home:  HomePage(),
+      theme: ThemeData(primarySwatch: Colors.yellow),
     );
   }
 }
